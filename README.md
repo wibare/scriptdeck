@@ -8,11 +8,12 @@ This project is under active development. More scripts will be added and refined
 
 ## Scripts Overview
 
-| Script           | Description                               | Example Usage                          |
-|------------------|-------------------------------------------|----------------------------------------|
-| `copyfile.sh`    | Copy text file contents to clipboard      | `./copyfile.sh notes.txt`              |
-| `copyimage.sh`   | Copy image file to clipboard              | `./copyimage.sh logo.png`              |
-| `resizeimg.sh`   | Resize image(s) with optional proportions | `./resizeimg.sh cat.jpg 300 auto`      |
+| Script             | Description                               | Example Usage                          |
+|--------------------|-------------------------------------------|----------------------------------------|
+| `copyfile.sh`      | Copy text file contents to clipboard      | `./copyfile.sh notes.txt`              |
+| `copyimage.sh`     | Copy image file to clipboard              | `./copyimage.sh logo.png`              |
+| `resizeimg.sh`     | Resize image(s) with optional proportions | `./resizeimg.sh cat.jpg 300 auto`      |
+| `audio_convert.sh` | Convert audio files to another format   | `./audio_convert.sh song.wav mp3`        |
 
 ---
 
@@ -42,6 +43,12 @@ sudo apt install xclip          # for X11
 
 ```bash
 sudo apt install imagemagick
+```
+
+### `audio_convert.sh`
+
+```bash
+sudo apt install ffmpeg
 ```
 
 ---
@@ -79,6 +86,22 @@ Resize all images in a directory to height 300px (preserving width proportionall
 ```
 
 All resized images are saved in a `resized/` folder inside the original directory.
+
+### `audio_convert.sh`
+
+Convert a single audio file:
+
+```bash
+./audio_convert.sh song.wav mp3
+```
+Convert all supported audio files in a folder:
+
+```bash
+./audio_convert.sh ./Music/ ogg
+```
+All converted files are saved in a `converted` folder inside the original directory.
+
+Supported input formats include: `wav`, `mp3`, `ogg`, `flac`, `m4a`, `aac`.
 
 ## License
 
