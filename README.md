@@ -13,7 +13,9 @@ This project is under active development. More scripts will be added and refined
 | `copyfile.sh`      | Copy text file contents to clipboard      | `./copyfile.sh notes.txt`              |
 | `copyimage.sh`     | Copy image file to clipboard              | `./copyimage.sh logo.png`              |
 | `resizeimg.sh`     | Resize image(s) with optional proportions | `./resizeimg.sh cat.jpg 300 auto`      |
-| `audio_convert.sh` | Convert audio files to another format   | `./audio_convert.sh song.wav mp3`        |
+| `audio_convert.sh` | Convert audio files to another format     | `./audio_convert.sh song.wav mp3`      |
+| `extract.sh`       | Extract compressed archives intelligently | `./extract.sh archive.tar.gz`          |
+
 
 ---
 
@@ -49,6 +51,12 @@ sudo apt install imagemagick
 
 ```bash
 sudo apt install ffmpeg
+```
+
+### `extract.sh`
+
+```bash
+sudo apt install file unzip p7zip-full unrar-free
 ```
 
 ---
@@ -102,6 +110,28 @@ Convert all supported audio files in a folder:
 All converted files are saved in a `converted` folder inside the original directory.
 
 Supported input formats include: `wav`, `mp3`, `ogg`, `flac`, `m4a`, `aac`.
+
+### `extract.sh`
+
+Extract a `.tar.gz` archive:
+
+```bash
+./extract.sh project.tar.gz
+```
+
+Extract a `.zip` file:
+
+```bash
+./extract.sh backup.zip
+```
+
+Extract a `.7z` file:
+
+```bash
+./extract.sh music.7z
+```
+Extracted contents are saved in a new folder named after the archive, with a `_extracted` suffix.
+For example, `project.tar.gz` will be extracted to `project_extracted/`.
 
 ## License
 
