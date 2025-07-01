@@ -15,6 +15,7 @@ This project is under active development. More scripts will be added and refined
 | `resizeimg.sh`     | Resize image(s) with optional proportions | `./resizeimg.sh cat.jpg 300 auto`      |
 | `audio_convert.sh` | Convert audio files to another format     | `./audio_convert.sh song.wav mp3`      |
 | `extract.sh`       | Extract compressed archives intelligently | `./extract.sh archive.tar.gz`          |
+| `fileinfo.sh`      | Show detailed file information            | `./fileinfo.sh notes.txt`              |
 
 
 ---
@@ -57,6 +58,12 @@ sudo apt install ffmpeg
 
 ```bash
 sudo apt install file unzip p7zip-full unrar-free
+```
+
+### `fileinfo.sh`
+
+```bash
+sudo apt install coreutils file
 ```
 
 ---
@@ -132,6 +139,16 @@ Extract a `.7z` file:
 ```
 Extracted contents are saved in a new folder named after the archive, with a `_extracted` suffix.
 For example, `project.tar.gz` will be extracted to `project_extracted/`.
+
+### `fileinfo.sh`
+
+Display detailed information about a file:
+
+```bash
+./fileinfo.sh notes.txt
+```
+If the file is a text file, it will also show line and word counts.
+Output includes size, MIME type, encoding, permissions, timestamps, inode, hash values (MD5, SHA1, SHA256), and more.
 
 ## License
 
