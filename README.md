@@ -21,6 +21,7 @@ This project is under active development. More scripts will be added and refined
 | `extract.sh`       | Extract compressed archives intelligently         | `./extract.sh archive.tar.gz`          |
 | `fileinfo.sh`      | Show detailed file information                    | `./fileinfo.sh notes.txt`              |
 | `links.sh`         | Save, tag, search, edit and open URLs in Markdown | `./links.sh add https://debian.org`    |
+| `pdfmerge.sh`      | Merge multiple PDF files into one                 | `./pdfmerge.sh a.pdf b.pdf result.pdf` |
 
 
 ---
@@ -76,6 +77,12 @@ sudo apt install coreutils file
 ```bash
 # To open links in your default browser
 sudo apt install xdg-utils
+```
+
+### `pdfmerge.sh`
+
+```bash
+sudo apt install poppler-utils
 ```
 
 ---
@@ -189,6 +196,16 @@ Will store the following entry in `~/.scriptdeck-links/links.md:`
 
 You can then list saved links, search by keyword, edit or delete an entry, or open it in your default browser using its number.
 
+### `pdfmerge.sh`
+
+Merge multiple PDF files into a single one:
+
+```bash
+./pdfmerge.sh file1.pdf file2.pdf merged.pdf
+```
+
+If `merged.pdf` already exists, you will be asked before overwriting it.
+Only .pdf files are accepted.
 
 ## License
 
