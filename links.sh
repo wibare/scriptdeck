@@ -29,17 +29,24 @@ usage() {
 add_link() {
     local url="$1"
     local title="${2:-$url}"
-    shift 2 || true
+    shift 2
+
     local tags=""
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --tags)
+                shift
+                [[ -n "${1:-}" ]] && tags="@${1//,/ @}"
+                ;;
+        esac
+        shift
+    done
 
-    if [[ "${1:-}" == "--tags" && -n "${2:-}" ]]; then
-        tags="@${2//,/ @}"
-    fi
-
-    local date="$(date '+%Y-%m-%d %H:%M')"
+    local date
+    date="$(date '+%Y-%m-%d %H:%M')"
     echo "- [$title]($url) $tags" >> "$LINKS_FILE"
     echo "  Saved: $date"         >> "$LINKS_FILE"
-    echo ""                      >> "$LINKS_FILE"
+    echo ""                       >> "$LINKS_FILE"
     echo "Link saved."
 }
 
@@ -86,7 +93,8 @@ search_links() {
 
 open_link() {
     local number="$1"
-    local url=$(awk -v n="$number" '
+    local url
+    url=$(awk -v n="$number" '
         /^\- \[.*\]\((.*)\)/ {
             count++
             if (count == n) {
@@ -129,9 +137,12 @@ edit_link() {
     local original_line
     original_line=$(sed -n "${start_line}p" "$LINKS_FILE")
 
-    local title=$(echo "$original_line" | sed -E 's/^- \[(.*)\]\(.*\).*/\1/')
-    local url=$(echo "$original_line" | sed -E 's/^- \[.*\]\((.*)\).*/\1/')
-    local tags=$(echo "$original_line" | sed -E 's/^- \[.*\]\(.*\) *(.*)/\1/')
+    local title
+    title=$(echo "$original_line" | sed -E 's/^- \[(.*)\]\(.*\).*/\1/')
+    local url
+    url=$(echo "$original_line" | sed -E 's/^- \[.*\]\((.*)\).*/\1/')
+    local tags
+    tags=$(echo "$original_line" | sed -E 's/^- \[.*\]\(.*\) *(.*)/\1/')
 
     echo "Editing link #$number"
     read -rp "Title [$title]: " new_title
@@ -142,7 +153,8 @@ edit_link() {
     new_url="${new_url:-$url}"
     new_tags="${new_tags:-$tags}"
 
-    local date="$(date '+%Y-%m-%d %H:%M')"
+    local date
+    date="$(date '+%Y-%m-%d %H:%M')"
     sed -i "${start_line}s|.*|- [$new_title]($new_url) $new_tags|" "$LINKS_FILE"
     sed -i "$((start_line + 1))s|.*|  Saved: $date|" "$LINKS_FILE"
 
@@ -152,7 +164,7 @@ edit_link() {
 case "${1:-}" in
     add)
         [[ $# -ge 2 ]] || usage
-        add_link "$2" "${3:-}" "${4:-}" "${5:-}"
+        add_link "$2" "${3:-}" "${@:4}"
         ;;
     list)
         list_links
@@ -177,3 +189,4 @@ case "${1:-}" in
         usage
         ;;
 esac
+

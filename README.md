@@ -1,7 +1,7 @@
 # scriptdeck – Personal CLI Toolkit
 
 <p align="center">
-  <img src="img/banner.svg" alt="scriptdeck banner" height="200">
+    <p align="center"><img src="img/banner.png" width="250"></p>
 </p>
 
 **scriptdeck** is a growing collection of practical Bash scripts for everyday tasks on Linux. The focus is on simplicity, minimal dependencies, and compatibility with both Wayland and X11 environments. Designed primarily for Debian-based systems.
